@@ -1,14 +1,46 @@
 services:
+  mariadb:
+      image: mariadb:latest
+      container_name: ${NAME}-db
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+        MYSQL_DATABASE: "${MYSQL_DATABASE}"
+        MYSQL_USER: "${MYSQL_USER}"
+        MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+
+      ports:
+        - "3306:3306"
+      volumes:
+        - stockflow_mariadb_data:/var/lib/mysql
+
+  flask-api:
+    build:
+      context: .
+      dockerfile: docker/flask-api/Dockerfile
+    container_name: ${NAME}-flask-api
+    ports:
+      - "5000:5000"
+      - "5678:5678"
+    depends_on:
+      - mariadb
+    volumes:
+      - ./web/rest:/opt/stockflow
+
   client:
     build:
       context: .
       dockerfile: docker/client/Dockerfile
+    container_name: ${NAME}-client
     ports:
       - "4200:4200"
     volumes:
       - ./web/client:/web/client
     restart: always
 
+volumes:
+  stockflow_mariadb_data:
+
 networks:
-  my_network:
+  stockflow_network:
     driver: bridge

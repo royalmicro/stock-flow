@@ -1,0 +1,27 @@
+name: Codestyle
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        sudo apt install libmariadb3 libmariadb-dev
+        python -m pip install --upgrade pip
+        pip install -r web/rest/requirements.txt
+    - name: Grant execution permissions
+      run: |
+        chmod +x -R web/rest/bin
+    - name: Check codestyle with black formatter
+      run: |
+        ./web/rest/bin/test-codestyle.sh

@@ -1,0 +1,15 @@
+Flask===2.3.3
+Flask-SQLAlchemy===3.1.1
+Flask-Marshmallow===1.2.1
+Flask-Migrate===4.0.7
+flask-cors===4.0.1
+mariadb===1.1.10
+psycopg2-binary===2.9.9
+python-dotenv===1.0.1
+debugpy===1.8.2
+pylint===3.2.6
+flask-restx===1.2.0
+flask-injector===0.15.0
+black===24.4.2
+flask-jwt-extended===4.6.0
+requests===2.32.3
