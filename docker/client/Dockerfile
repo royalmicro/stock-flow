@@ -14,4 +14,5 @@ RUN npm install
 EXPOSE 4200/tcp
 
 # Command to run the Angular development server
-CMD ["npm", "run", "start", "--", "--host", "0.0.0.0", "--poll", "500"]
+CMD ["sleep", "infinity"]
+#CMD ["npm", "run", "start", "--", "--host", "0.0.0.0", "--poll", "500"]
