@@ -1,0 +1,89 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; // Full height of the viewport
+
+    .card {
+        width: 50vh;
+        max-width: 100%;
+
+        & > * {
+            width: 80%; // Set width of each child to 80% of the parent
+            margin: 0 auto; // Center the child within the parent
+        }
+        .card-header {
+            display: flex; // Use flexbox for centering
+            justify-content: center; // Center horizontally
+            align-items: center; // Center vertically
+
+            mat-card-title {
+                text-align: center; // Ensure text is centered
+                width: 100%; // Make sure it takes full width
+            }
+        }
+
+        .flat-button {
+            border-radius: 8px !important; // Remove the default border radius
+            flex: 1; // Allow buttons to grow and fill space
+            margin: 0 5px; // Add horizontal margin between buttons
+            display: flex; // Use flexbox for button content
+            align-items: center; // Center content vertically
+            justify-content: center; // Center content horizontally
+            padding: 10px;
+
+            .icon {
+                margin-right: 8px;
+                width: 20px; // Set width for uniformity
+                height: 20px; // Set height for uniformity
+            }
+        }
+
+        .button-container {
+            display: flex; // Use flexbox for layout
+            justify-content: space-between; // Space out buttons evenly
+            align-items: center; // Center buttons vertically
+            margin-bottom: 16px;
+            .flat-button {
+                // Reuse the same flat-button styles
+                @extend .flat-button; // This allows reusing the styles
+            }
+        }
+
+        .horizontal-line {
+            display: flex; // Use flexbox for centering
+            align-items: center; // Center vertically
+            text-align: center; // Center text horizontally
+            color: grey; // Text color
+
+            &::before {
+                content: ""; // Create an empty content for the line
+                flex: 1; // Allow the line to grow
+                border-top: 1px solid grey; // Style the top border as the line
+                margin-right: 8px; // Space between line and text
+            }
+
+            &::after {
+                content: ""; // Create an empty content for the line
+                flex: 1; // Allow the line to grow
+                border-top: 1px solid grey; // Style the top border as the line
+                margin-left: 8px; // Space between line and text
+            }
+        }
+
+        .login-form {
+            display: block; // Ensure the form is displayed as a block element
+            max-width: 100%; // Optionally limit the form width
+            margin: 0 auto; // Center the form horizontally
+            margin-top: 16px;
+
+            .custom-form-field {
+                width: 100%; // Make each form field full width
+            }
+        }
+
+        .card-actions {
+            margin-bottom: 16px;
+        }
+    }
+}
